@@ -18,10 +18,18 @@ public class Bullet : MonoBehaviour
         switch(collision.gameObject.tag)
         {
             case "Enemy":
+                if (impactEffect != null)
+                {
+                    Instantiate(impactEffect, transform.position, transform.rotation);
+                }
                 collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
                 Destroy(gameObject);
                 break;
             default:
+                if(impactEffect != null)
+                {
+                    Instantiate(impactEffect, transform.position, transform.rotation);
+                }
                 Destroy(gameObject);
                 break;
         }
