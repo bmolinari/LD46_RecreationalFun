@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Shop Management")]
     public GameObject shopkeeper;
+    public GameObject saleCounter;
 
     [Header("Player Management")]
     public GameObject player;
@@ -86,16 +87,39 @@ public class GameManager : MonoBehaviour
             {
                 isLevelClear = true;
                 PayoutPlayer();
-                shopkeeper.SetActive(true);
+                ActivateShop();
             }
         }
+    }
+
+    public void ActivateShop()
+    {
+        shopkeeper.SetActive(true);
+        shopkeeper.transform.localPosition = Vector3.zero;
+        saleCounter.SetActive(true);
     }
 
     public void PayoutPlayer()
     {
         int payoutAmount = (GetHighestCurrentCombo() * enemyKillCount) + (int)(player.GetComponent<PlayerToxicity>().CurrentToxcicity); // 10);
+
+        Debug.Log($"Highest Combo: {GetHighestCurrentCombo().ToString()}");
+        Debug.Log($"enemyKillCount: {enemyKillCount}");
+        Debug.Log($"Toxicity: {player.GetComponent<PlayerToxicity>().CurrentToxcicity}");
+        Debug.Log($"Payout: {payoutAmount}");
         targetCoinCount = coinCount + payoutAmount;
         StartCoroutine(ScoreUpdater());
+    }
+
+
+    public void PurchaseSubstance(Substance substance)
+    {
+        if (coinCount >= substance.cost)
+        {
+            targetCoinCount -= substance.cost;
+            player.GetComponent<PlayerToxicity>().IngestSubstance(substance.intoxicationAmount);
+            StartCoroutine(ScoreUpdater());
+        }
     }
 
     private IEnumerator ScoreUpdater()

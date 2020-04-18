@@ -52,7 +52,8 @@ MonoBehaviour:
   - {fileID: 0}
   isLevelClear: 0
   shopkeeper: {fileID: 0}
-  player: {fileID: 8611429525702493713, guid: f7cacfbca97c2ec49b3baaa7682fb235, type: 3}
+  interactableZone: {fileID: 0}
+  player: {fileID: 0}
   coinCount: 0
   targetCoinCount: 0
-  rollUpDelay: 0.0025
+  rollUpDelay: 0.05

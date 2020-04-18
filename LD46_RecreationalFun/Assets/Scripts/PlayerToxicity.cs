@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerToxicity : MonoBehaviour
 {
@@ -91,6 +89,11 @@ public class PlayerToxicity : MonoBehaviour
                 spriteRenderer.color = GetHitColor();
             }
         }
+    }
+
+    public void IngestSubstance(float amount)
+    {
+        currentToxicityLevels += amount;
     }
 
     public void Die()
