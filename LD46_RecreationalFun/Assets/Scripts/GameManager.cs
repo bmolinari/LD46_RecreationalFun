@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void PayoutPlayer()
     {
-        int payoutAmount = (GetHighestCurrentCombo() * enemyKillCount) + (int)(player.GetComponent<PlayerToxicity>().CurrentToxcicity); /// 10);
+        int payoutAmount = (GetHighestCurrentCombo() * enemyKillCount) + (int)(player.GetComponent<PlayerToxicity>().CurrentToxcicity); // 10);
         targetCoinCount = coinCount + payoutAmount;
         StartCoroutine(ScoreUpdater());
     }
@@ -106,6 +106,11 @@ public class GameManager : MonoBehaviour
             {
                 coinCount++; //Increment the display score by 1
             }
+            else if(coinCount > targetCoinCount)
+            {
+                coinCount--;
+            }
+
             yield return new WaitForSeconds(rollUpDelay); // I used .2 secs but you can update it as fast as you want
         }
     }
