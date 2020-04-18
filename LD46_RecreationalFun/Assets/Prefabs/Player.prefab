@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxToxicityLevels: 1000
   minToxicityLevels: 0
+  currentToxicityLevels: 0
   isSober: 0
   spriteRenderer: {fileID: 8611429525702493715}
   colorFlashTime: 0.1
