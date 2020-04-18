@@ -63,11 +63,7 @@ public class PlayerToxicity : MonoBehaviour
                 currentToxicityLevels = minToxicityLevels;
             }
         }
-
-
-        
     }
-
 
     public void BuzzKill(float amount)
     {

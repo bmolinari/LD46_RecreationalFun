@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
                 collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
-                // Increase Combo Counter
+                GameManager.instance.IncreaseComboCount();
                 Destroy(gameObject);
                 break;
             default:
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
-                // Reset Combo Counter
+                GameManager.instance.ResetComboCount();
                 Destroy(gameObject);
                 break;
         }
