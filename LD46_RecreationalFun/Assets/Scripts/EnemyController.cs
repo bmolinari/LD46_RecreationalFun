@@ -97,6 +97,7 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+        GameManager.instance.RemoveTrackedEnemy(gameObject);
         gameObject.SetActive(false);
         if (deathEffect != null)
         {

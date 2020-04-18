@@ -21,6 +21,11 @@ public class PlayerToxicity : MonoBehaviour
     private bool isRecoveringFromHit;
     private float currentRecoverTime;
 
+    public float CurrentToxcicity
+    {
+        get { return currentToxicityLevels; }
+    }
+
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

@@ -14,10 +14,26 @@ public class GameManager : MonoBehaviour
     public int enemyKillCount;
     public List<GameObject> enemiesLeftPerLevel = new List<GameObject>();
 
+    [Header("Level Management")]
+    public bool isLevelClear;
+
+    [Header("Shop Management")]
+    public GameObject shopkeeper;
+
+    [Header("Player Management")]
+    public GameObject player;
+    public int coinCount;
+    public int targetCoinCount;
+    public float rollUpDelay = 0.0025f;
 
     public int CurrentCombo
     {
         get { return comboCount; }
+    }
+
+    public int CurrentCoinCount
+    {
+        get { return coinCount; }
     }
 
     private void Awake()
@@ -33,7 +49,6 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
     }
-    
 
     public void IncreaseComboCount()
     {
@@ -58,5 +73,40 @@ public class GameManager : MonoBehaviour
         }
 
         return 1;
+    }
+
+    public void RemoveTrackedEnemy(GameObject enemy)
+    {
+        bool removed = enemiesLeftPerLevel.Remove(enemy);
+        if (removed)
+        {
+            enemyKillCount++;
+
+            if (enemiesLeftPerLevel.Count <= 0)
+            {
+                isLevelClear = true;
+                PayoutPlayer();
+                shopkeeper.SetActive(true);
+            }
+        }
+    }
+
+    public void PayoutPlayer()
+    {
+        int payoutAmount = (GetHighestCurrentCombo() * enemyKillCount) + (int)(player.GetComponent<PlayerToxicity>().CurrentToxcicity); /// 10);
+        targetCoinCount = coinCount + payoutAmount;
+        StartCoroutine(ScoreUpdater());
+    }
+
+    private IEnumerator ScoreUpdater()
+    {
+        while (true)
+        {
+            if (coinCount < targetCoinCount)
+            {
+                coinCount++; //Increment the display score by 1
+            }
+            yield return new WaitForSeconds(rollUpDelay); // I used .2 secs but you can update it as fast as you want
+        }
     }
 }

@@ -43,3 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9870158f1083d5449a55dd43d881b7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboCount: 0
+  comboCountsPerLevel: 
+  enemyKillCount: 0
+  enemiesLeftPerLevel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isLevelClear: 0
+  shopkeeper: {fileID: 0}
+  player: {fileID: 8611429525702493713, guid: f7cacfbca97c2ec49b3baaa7682fb235, type: 3}
+  coinCount: 0
+  targetCoinCount: 0
+  rollUpDelay: 0.0025
