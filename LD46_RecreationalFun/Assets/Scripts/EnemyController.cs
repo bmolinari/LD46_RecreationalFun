@@ -20,34 +20,44 @@ public class EnemyController : MonoBehaviour
     [Header("Attack Behavior")]
     public EnemyBrain behavior;
     public GameObject target;
-    private Rigidbody2D rb;
 
-    private bool isRecoveringFromHit;
-    public float maxRecoverTime = 1f;
-    private float currentRecoverTime;
+
 
     [Header("Animation")]
     public GameObject deathEffect;
+
+    [Header("Components")]
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+
+    [Header("Damaged Variables")]
+    public float colorFlashTime = .1f;
+    public float maxRecoverTime = 1f;
+    private Color startingColor;
+    private bool isRecoveringFromHit;
+    private float currentRecoverTime;
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
         currentHealth = maxHealth;
         moveSpeed = startingMoveSpeed;
+        startingColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(behavior == EnemyBrain.Zombie)
+        if (behavior == EnemyBrain.Zombie)
         {
             // Mindlessly chase player around map.
-            if(target != null)
+            if (target != null)
             {
                 float step = moveSpeed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
@@ -55,10 +65,16 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if(isRecoveringFromHit)
+        if (isRecoveringFromHit)
         {
             currentRecoverTime += Time.deltaTime;
-            if(currentRecoverTime >= maxRecoverTime)
+
+            if (currentRecoverTime >= colorFlashTime)
+            {
+                spriteRenderer.color = startingColor;
+            }
+
+            if (currentRecoverTime >= maxRecoverTime)
             {
                 isRecoveringFromHit = false;
                 moveSpeed = startingMoveSpeed;
@@ -69,21 +85,33 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
         isRecoveringFromHit = true;
         moveSpeed = 2f;
         currentRecoverTime = 0;
+        spriteRenderer.color = GetRandomColor();
     }
 
     public void Die()
     {
         gameObject.SetActive(false);
-        if(deathEffect != null)
+        if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
+    }
+
+    private Color GetRandomColor()
+    {
+        Color newColor = new Color(
+              Random.Range(0f, 1f),
+              Random.Range(0f, 1f),
+              Random.Range(0f, 1f)
+          );
+
+        return newColor;
     }
 }
