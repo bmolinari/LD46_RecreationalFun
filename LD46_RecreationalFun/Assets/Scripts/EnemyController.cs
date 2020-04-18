@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
 
     public float startingMoveSpeed = 4f;
     private float moveSpeed;
+
     [Header("Attack Behavior")]
     public EnemyBrain behavior;
     public GameObject target;
@@ -24,6 +25,9 @@ public class EnemyController : MonoBehaviour
     private bool isRecoveringFromHit;
     public float maxRecoverTime = 1f;
     private float currentRecoverTime;
+
+    [Header("Animation")]
+    public GameObject deathEffect;
 
     // Start is called before the first frame update
     void Awake()
@@ -67,10 +71,19 @@ public class EnemyController : MonoBehaviour
         currentHealth -= damageAmount;
         if(currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            Die();
         }
         isRecoveringFromHit = true;
         moveSpeed = 2f;
         currentRecoverTime = 0;
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+        if(deathEffect != null)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
     }
 }
