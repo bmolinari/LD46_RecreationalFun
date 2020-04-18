@@ -105,15 +105,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private Color GetRandomColor()
+    public void SetRandomColor()
     {
         Color newColor = new Color(
-              Random.Range(0f, 1f),
-              Random.Range(0f, 1f),
-              Random.Range(0f, 1f)
+              Random.Range(.5f, .9f),
+              Random.Range(0f, .4f),
+              Random.Range(0f, .4f)
           );
-
-        return newColor;
+        startingColor = newColor;
+        spriteRenderer.color = newColor;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -131,5 +131,16 @@ public class EnemyController : MonoBehaviour
         {
             moveSpeed = startingMoveSpeed;
         }
+    }
+
+    private Color GetRandomColor()
+    {
+        Color newColor = new Color(
+              Random.Range(0f, 1f),
+              Random.Range(0f, 1f),
+              Random.Range(0f, 1f)
+          );
+
+        return newColor;
     }
 }

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  startingMoveSpeed: 4
+  startingMoveSpeed: 5
   behavior: 0
   target: {fileID: 0}
   attackDamage: 25

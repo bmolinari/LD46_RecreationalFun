@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [Header("Enemy Management")]
     public int enemyKillCount;
     public List<GameObject> enemiesLeftPerLevel = new List<GameObject>();
+    public List<GameObject> enemyTypes = new List<GameObject>();
+
+    public int minimumEnemyCount = 5;
+    public int maximumEnemyCount = 15;
 
     [Header("Level Management")]
     public bool isLevelClear;
@@ -50,7 +54,10 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
     }
-
+    private void Start()
+    {
+        ResetLevel();
+    }
     public void IncreaseComboCount()
     {
         comboCount++;
@@ -87,16 +94,22 @@ public class GameManager : MonoBehaviour
             {
                 isLevelClear = true;
                 PayoutPlayer();
-                ActivateShop();
+                OpenShop();
             }
         }
     }
 
-    public void ActivateShop()
+    public void OpenShop()
     {
         shopkeeper.SetActive(true);
         shopkeeper.transform.localPosition = Vector3.zero;
         saleCounter.SetActive(true);
+    }
+
+    public void CloseShop()
+    {
+        shopkeeper.SetActive(false);
+        saleCounter.SetActive(false);
     }
 
     public void PayoutPlayer()
@@ -136,6 +149,26 @@ public class GameManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(rollUpDelay); // I used .2 secs but you can update it as fast as you want
+        }
+    }
+
+    private void ResetLevel()
+    {
+        CloseShop();
+        comboCount = 0;
+        comboCountsPerLevel = new List<int>();
+        enemyKillCount = 0;
+
+        int enemyCount = Random.Range(minimumEnemyCount, maximumEnemyCount);
+        enemiesLeftPerLevel = new List<GameObject>();
+
+        for(int i = 0; i < enemyCount; i++)
+        {
+            Vector3 randomSpawnLocation = new Vector3(Random.Range(-20, 20), Random.Range(-14, 14));
+            GameObject newEnemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], randomSpawnLocation, Quaternion.identity);
+            newEnemy.GetComponent<EnemyController>().target = player;
+            newEnemy.GetComponent<EnemyController>().SetRandomColor();
+            enemiesLeftPerLevel.Add(newEnemy);
         }
     }
 }
