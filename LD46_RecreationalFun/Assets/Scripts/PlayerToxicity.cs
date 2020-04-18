@@ -7,7 +7,7 @@ public class PlayerToxicity : MonoBehaviour
     [Header("Toxicity Values")]
     public float maxToxicityLevels = 1000;
     public float minToxicityLevels = 0;
-    private float currentToxicityLevels;
+    public float currentToxicityLevels;
 
     public bool isSober;
 
@@ -56,7 +56,7 @@ public class PlayerToxicity : MonoBehaviour
         {
             if (!isSober)
             {
-                currentToxicityLevels -= Time.deltaTime;
+                currentToxicityLevels -= 2 * Time.deltaTime;
             }
             else
             {
