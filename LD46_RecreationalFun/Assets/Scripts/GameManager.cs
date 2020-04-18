@@ -14,16 +14,18 @@ public class GameManager : MonoBehaviour
     public int enemyKillCount;
     public List<GameObject> enemiesLeftPerLevel = new List<GameObject>();
     public List<GameObject> enemyTypes = new List<GameObject>();
-
     public int minimumEnemyCount = 5;
     public int maximumEnemyCount = 15;
+    public float enemySpawnRate = .75f;
 
     [Header("Level Management")]
+    public int currentLevel = 0;
     public bool isLevelClear;
 
     [Header("Shop Management")]
     public GameObject shopkeeper;
     public GameObject saleCounter;
+    public GameObject closeShopButton;
 
     [Header("Player Management")]
     public GameObject player;
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        currentLevel = 0;
         ResetLevel();
     }
     public void IncreaseComboCount()
@@ -104,12 +107,14 @@ public class GameManager : MonoBehaviour
         shopkeeper.SetActive(true);
         shopkeeper.transform.localPosition = Vector3.zero;
         saleCounter.SetActive(true);
+        closeShopButton.SetActive(true);
     }
 
     public void CloseShop()
     {
         shopkeeper.SetActive(false);
         saleCounter.SetActive(false);
+        closeShopButton.SetActive(false);
     }
 
     public void PayoutPlayer()
@@ -141,15 +146,21 @@ public class GameManager : MonoBehaviour
         {
             if (coinCount < targetCoinCount)
             {
-                coinCount++; //Increment the display score by 1
+                coinCount++; 
             }
             else if(coinCount > targetCoinCount)
             {
                 coinCount--;
             }
 
-            yield return new WaitForSeconds(rollUpDelay); // I used .2 secs but you can update it as fast as you want
+            yield return new WaitForSeconds(rollUpDelay); 
         }
+    }
+
+    public void StartNextLevel()
+    {
+        currentLevel++;
+        ResetLevel();
     }
 
     private void ResetLevel()
@@ -159,16 +170,22 @@ public class GameManager : MonoBehaviour
         comboCountsPerLevel = new List<int>();
         enemyKillCount = 0;
 
-        int enemyCount = Random.Range(minimumEnemyCount, maximumEnemyCount);
+        int enemyCount = Random.Range(minimumEnemyCount + (currentLevel * 5), maximumEnemyCount + (currentLevel * 5));
         enemiesLeftPerLevel = new List<GameObject>();
+        StartCoroutine(SpawnEnemies(enemyCount));
+    }
 
-        for(int i = 0; i < enemyCount; i++)
+    private IEnumerator SpawnEnemies(int enemyTotal)
+    {
+        while(enemiesLeftPerLevel.Count < enemyTotal)
         {
             Vector3 randomSpawnLocation = new Vector3(Random.Range(-20, 20), Random.Range(-14, 14));
             GameObject newEnemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], randomSpawnLocation, Quaternion.identity);
             newEnemy.GetComponent<EnemyController>().target = player;
             newEnemy.GetComponent<EnemyController>().SetRandomColor();
             enemiesLeftPerLevel.Add(newEnemy);
+
+            yield return new WaitForSeconds(enemySpawnRate);
         }
     }
 }

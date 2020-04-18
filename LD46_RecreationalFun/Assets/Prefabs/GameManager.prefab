@@ -50,10 +50,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemyTypes:
+  - {fileID: 6893745059700564814, guid: bfe4173079e412a42acdc21bf67254f8, type: 3}
+  minimumEnemyCount: 5
+  maximumEnemyCount: 15
+  currentLevel: 1
   isLevelClear: 0
   shopkeeper: {fileID: 0}
-  interactableZone: {fileID: 0}
+  saleCounter: {fileID: 0}
+  closeShopButton: {fileID: 0}
   player: {fileID: 0}
   coinCount: 0
   targetCoinCount: 0
-  rollUpDelay: 0.05
+  rollUpDelay: 0.0025
