@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     [Header("Attack Behavior")]
     public EnemyBrain behavior;
     public GameObject target;
-
+    public float attackDamage;
 
 
     [Header("Animation")]
@@ -113,5 +113,22 @@ public class EnemyController : MonoBehaviour
           );
 
         return newColor;
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerToxicity>().BuzzKill(attackDamage);
+            moveSpeed = 0;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            moveSpeed = startingMoveSpeed;
+        }
     }
 }
