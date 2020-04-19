@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public float enemySpawnRate = .75f;
 
     [Header("Level Management")]
-    public int currentLevel = 0;
+    public int currentLevel = 1;
     public bool isLevelClear;
 
     [Header("Shop Management")]
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Management")]
     public GameObject player;
+    public GameObject defaultWeapon;
     public int coinCount;
     public int targetCoinCount;
     public float rollUpDelay = 0.0025f;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        currentLevel = 0;
+        currentLevel = 1;
         ResetLevel();
     }
     public void IncreaseComboCount()
@@ -107,6 +108,10 @@ public class GameManager : MonoBehaviour
         shopkeeper.SetActive(true);
         shopkeeper.transform.localPosition = Vector3.zero;
         saleCounter.SetActive(true);
+        foreach(Transform child in saleCounter.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
         closeShopButton.SetActive(true);
     }
 
@@ -119,12 +124,12 @@ public class GameManager : MonoBehaviour
 
     public void PayoutPlayer()
     {
-        int payoutAmount = (GetHighestCurrentCombo() * enemyKillCount) + (int)(player.GetComponent<PlayerToxicity>().CurrentToxcicity); // 10);
+        int payoutAmount = (currentLevel * enemyKillCount) + GetHighestCurrentCombo();
 
-        Debug.Log($"Highest Combo: {GetHighestCurrentCombo().ToString()}");
-        Debug.Log($"enemyKillCount: {enemyKillCount}");
-        Debug.Log($"Toxicity: {player.GetComponent<PlayerToxicity>().CurrentToxcicity}");
-        Debug.Log($"Payout: {payoutAmount}");
+        //Debug.Log($"Highest Combo: {GetHighestCurrentCombo().ToString()}");
+        //Debug.Log($"enemyKillCount: {enemyKillCount}");
+        //Debug.Log($"Toxicity: {player.GetComponent<PlayerToxicity>().CurrentToxcicity}");
+        //Debug.Log($"Payout: {payoutAmount}");
         targetCoinCount = coinCount + payoutAmount;
         StartCoroutine(ScoreUpdater());
     }
@@ -138,6 +143,34 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerToxicity>().IngestSubstance(substance.intoxicationAmount);
             StartCoroutine(ScoreUpdater());
         }
+    }
+
+    public bool PurchaseWeapon(Weapon weapon)
+    {
+        if (coinCount >= weapon.cost)
+        {
+            targetCoinCount -= weapon.cost;
+
+            foreach (Transform child in player.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Instantiate(weapon, player.transform);
+
+            StartCoroutine(ScoreUpdater());
+            return true;
+        }
+
+        return false;
+    }
+
+    public void ReturnDefaultWeaponToPlayer()
+    {
+        foreach (Transform child in player.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        Instantiate(defaultWeapon, player.transform);
     }
 
     private IEnumerator ScoreUpdater()
@@ -170,7 +203,7 @@ public class GameManager : MonoBehaviour
         comboCountsPerLevel = new List<int>();
         enemyKillCount = 0;
 
-        int enemyCount = Random.Range(minimumEnemyCount + (currentLevel * 5), maximumEnemyCount + (currentLevel * 5));
+        int enemyCount = Random.Range(minimumEnemyCount + (currentLevel * 3), maximumEnemyCount + (currentLevel * 3));
         enemiesLeftPerLevel = new List<GameObject>();
         StartCoroutine(SpawnEnemies(enemyCount));
     }

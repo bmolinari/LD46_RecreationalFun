@@ -8,8 +8,8 @@ public class Interactable : MonoBehaviour
 
     public KeyCode interactKey;
     public UnityEvent action;
-    public SpriteRenderer spriteRenderer;
 
+    private SpriteRenderer spriteRenderer;
     private Color startingColor;
     private Color highlightedColor;
     private bool isInRange;

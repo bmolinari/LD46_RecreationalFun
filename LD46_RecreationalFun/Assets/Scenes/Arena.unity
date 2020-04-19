@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 671014527}
   m_Layer: 0
   m_Name: Shop
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1288,7 +1288,23 @@ PrefabInstance:
     - target: {fileID: 3268241563636890415, guid: 0be768b3edf425046b6a426e2c3e14a9,
         type: 3}
       propertyPath: maximumEnemyCount
-      value: 7
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268241563636890415, guid: 0be768b3edf425046b6a426e2c3e14a9,
+        type: 3}
+      propertyPath: minimumEnemyCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268241563636890415, guid: 0be768b3edf425046b6a426e2c3e14a9,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 3614016013270661516, guid: 73f78314f34d8bf4abc9c124f8a99e2a,
+        type: 3}
+    - target: {fileID: 3268241563636890415, guid: 0be768b3edf425046b6a426e2c3e14a9,
+        type: 3}
+      propertyPath: currentLevel
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9207285050268739251, guid: 0be768b3edf425046b6a426e2c3e14a9,
         type: 3}
@@ -1622,6 +1638,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8512157178738428239, guid: 52cd680d0986b5347a14b8711bcfcbbe,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512157178738428239, guid: 52cd680d0986b5347a14b8711bcfcbbe,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.4801976
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512157178738428239, guid: 52cd680d0986b5347a14b8711bcfcbbe,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8592246
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52cd680d0986b5347a14b8711bcfcbbe, type: 3}
 --- !u!1001 &8611429525704895488
@@ -1631,11 +1662,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2492297745859645358, guid: f7cacfbca97c2ec49b3baaa7682fb235,
-        type: 3}
-      propertyPath: currentToxicityLevels
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8611429525702493713, guid: f7cacfbca97c2ec49b3baaa7682fb235,
         type: 3}
       propertyPath: m_Name
@@ -1839,6 +1865,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room
       objectReference: {fileID: 0}
+    - target: {fileID: 8918937967223751092, guid: dfecab929651a2844855a4abcff62006,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 8918937967693730184, guid: dfecab929651a2844855a4abcff62006,
         type: 3}
       propertyPath: m_Color.r
@@ -1853,6 +1884,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.023718417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918937967985115395, guid: dfecab929651a2844855a4abcff62006,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918937967985563227, guid: dfecab929651a2844855a4abcff62006,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918937968614955665, guid: dfecab929651a2844855a4abcff62006,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfecab929651a2844855a4abcff62006, type: 3}

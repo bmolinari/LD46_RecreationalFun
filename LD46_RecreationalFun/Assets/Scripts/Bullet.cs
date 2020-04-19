@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
                 GameManager.instance.IncreaseComboCount();
                 Destroy(gameObject);
                 break;
-            default:
+            case "Wall":
                 if(impactEffect != null)
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
