@@ -130,11 +130,7 @@ public class GameManager : MonoBehaviour
         shopTooltip.GetComponent<ShopTooltip>().WinMessage();
         shopkeeper.SetActive(true);
         shopkeeper.transform.localPosition = new Vector3(0, -.165f, 0);
-        saleCounter.SetActive(true);
-        foreach (Transform child in saleCounter.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        saleCounter.SetActive(false);
         winningDrink.SetActive(true);
 
     }
