@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Battle Rifle
-  cost: 100
+  cost: 75
   firePoint: {fileID: 3614016014100773790}
   weaponDamage: 4
   fireType: 1
