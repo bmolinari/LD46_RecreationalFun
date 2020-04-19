@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class GameManager : MonoBehaviour
     public int targetCoinCount;
     public float rollUpDelay = 0.0025f;
 
+    [Header("Game Over")]
+    public GameObject gameOverMenu;
+
+
     public int CurrentCombo
     {
         get { return comboCount; }
@@ -56,8 +61,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(this);
     }
     private void Start()
     {
@@ -103,6 +106,16 @@ public class GameManager : MonoBehaviour
                 OpenShop();
             }
         }
+    }
+
+    public void ShowGameOverMenu()
+    {
+        gameOverMenu.SetActive(true);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OpenShop()

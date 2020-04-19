@@ -100,6 +100,7 @@ public class PlayerToxicity : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+        GameManager.instance.ShowGameOverMenu();
     }
 
     private Color GetHitColor()
