@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public GameObject shopkeeper;
     public GameObject saleCounter;
     public GameObject closeShopButton;
+    public GameObject shopTextInstructions;
+    public GameObject shopTooltip;
 
     [Header("Player Management")]
     public GameObject player;
@@ -106,13 +108,14 @@ public class GameManager : MonoBehaviour
     public void OpenShop()
     {
         shopkeeper.SetActive(true);
-        shopkeeper.transform.localPosition = Vector3.zero;
+        shopkeeper.transform.localPosition = new Vector3(0, -.165f, 0);
         saleCounter.SetActive(true);
         foreach(Transform child in saleCounter.transform)
         {
             child.gameObject.SetActive(true);
         }
         closeShopButton.SetActive(true);
+        shopTextInstructions.SetActive(true);
     }
 
     public void CloseShop()
@@ -120,6 +123,8 @@ public class GameManager : MonoBehaviour
         shopkeeper.SetActive(false);
         saleCounter.SetActive(false);
         closeShopButton.SetActive(false);
+        shopTooltip.SetActive(false);
+        shopTextInstructions.SetActive(false);
     }
 
     public void PayoutPlayer()

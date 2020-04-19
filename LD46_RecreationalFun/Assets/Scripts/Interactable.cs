@@ -50,7 +50,10 @@ public class Interactable : MonoBehaviour
             if (needsKeyPress)
             {
                 isInRange = true;
-                spriteRenderer.color = highlightedColor;
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = highlightedColor;
+                }
             }
             else
             {
@@ -66,7 +69,10 @@ public class Interactable : MonoBehaviour
             if (needsKeyPress)
             {
                 isInRange = false;
-                spriteRenderer.color = startingColor;
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = startingColor;
+                }
             }
         }
     }

@@ -98,7 +98,7 @@ MonoBehaviour:
   weaponName: Battle Rifle
   cost: 45
   firePoint: {fileID: 3614016014100773790}
-  weaponDamage: 4
+  weaponDamage: 5
   fireType: 1
   burstAmount: 3
   maxBurstFireCooldown: 1
