@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25fd85c557f6a52419e41c10cb1cb470, type: 3}
-  m_Name: TestoAle
+  m_Name: BugLite
   m_EditorClassIdentifier: 
-  name: Testo Ale
-  cost: 1
-  intoxicationAmount: 1000
+  name: BugLite
+  cost: 12
+  intoxicationAmount: 60
+  color: {r: 0, g: 0.0035750866, b: 1, a: 1}

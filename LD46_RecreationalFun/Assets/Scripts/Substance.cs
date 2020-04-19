@@ -8,4 +8,5 @@ public class Substance : ScriptableObject
     public string name;
     public int cost;
     public int intoxicationAmount;
+    public Color color;
 }

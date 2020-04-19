@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2718,11 +2718,31 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 542928766513015961, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542928766513015961, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542928766513015961, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 542928766513015962, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: shopTooltip
       value: 
       objectReference: {fileID: 1065986798}
+    - target: {fileID: 542928766513015962, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomizeDrink
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 542928767075484580, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2733,11 +2753,78 @@ PrefabInstance:
       propertyPath: shopTooltip
       value: 
       objectReference: {fileID: 1065986798}
+    - target: {fileID: 8190252273809907481, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252273809907481, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252273809907481, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: shopTooltip
       value: 
       objectReference: {fileID: 1065986798}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomizeDrink
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a360520f3382624d93a6fda70fa8241,
+        type: 2}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1df51db59d9479547888fad62230ebd4,
+        type: 2}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: f2785c457dc327b4b8b9870f508ceaca,
+        type: 2}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d64676bd3d80a448b86c5a0f75af9c3,
+        type: 2}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 773dab0882f4c694cbb722bf4384ea00,
+        type: 2}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a6e40f5efd11c949b76ef500ace1c55,
+        type: 2}
+    - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: randomSubstances.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ad8cda9a34f3c9489991969b974d81c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14e0e58894b5ea24fb5e065e869eadd8, type: 3}
 --- !u!1001 &821361220238684579

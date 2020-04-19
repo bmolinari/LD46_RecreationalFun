@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3f450a77c3f75409b778dae7fb39f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: PlasmaPistol
+  weaponName: Beetle Burster
   cost: 0
   firePoint: {fileID: 3614016014100773790}
   weaponDamage: 2

@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
 
     public void PayoutPlayer()
     {
-        int payoutAmount = (enemyKillCount/currentLevel) + enemyKillCount + GetHighestCurrentCombo();
+        int payoutAmount = ((enemyKillCount/currentLevel) * 2) + enemyKillCount + GetHighestCurrentCombo();
 
         //Debug.Log($"Highest Combo: {GetHighestCurrentCombo().ToString()}");
         //Debug.Log($"enemyKillCount: {enemyKillCount}");

@@ -29,11 +29,13 @@ public class SubstanceWrapper : MonoBehaviour
     private void InitializeStandardSubstance()
     {
         substance = standardSubstance;
+        gameObject.GetComponent<SpriteRenderer>().color = substance.color;
     } 
 
     private void IntializeRandomSubstance()
     {
-        // get from random list
+        substance = randomSubstances[Random.Range(0, randomSubstances.Count)];
+        gameObject.GetComponent<SpriteRenderer>().color = substance.color;
     }
 
     public void PurchaseSubstance()

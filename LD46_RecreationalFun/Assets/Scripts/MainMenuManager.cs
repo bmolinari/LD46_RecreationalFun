@@ -57,7 +57,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ShowRifleTip()
     {
-        nameText.text = "Battle Rifle";
+        nameText.text = "Scorpid Tail";
         descriptionText.text = "Burst Fire";
         messageText.text = "";
         shopTooltip.SetActive(true);
@@ -73,7 +73,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void ShowMachineGunTip()
     {
-        nameText.text = "Machine Gun";
+        nameText.text = "Fly Swatter";
         descriptionText.text = "Automatic";
         messageText.text = "";
         shopTooltip.SetActive(true);
@@ -89,7 +89,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ShowPistolTip()
     {
-        nameText.text = "Pistol";
+        nameText.text = "Beetle Burster";
         descriptionText.text = "Semi Automatic";
         messageText.text = "";
         shopTooltip.SetActive(true);
