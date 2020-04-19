@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public GameObject impactEffect;
+    public bool harmsPlayer;
 
 
     public void SetDamage(float weaponDamage)
@@ -22,8 +23,11 @@ public class Bullet : MonoBehaviour
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
-                collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
-                GameManager.instance.IncreaseComboCount();
+                if (!harmsPlayer)
+                {
+                    collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
+                    GameManager.instance.IncreaseComboCount();
+                }
                 Destroy(gameObject);
                 break;
             case "Wall":
@@ -34,8 +38,19 @@ public class Bullet : MonoBehaviour
                 GameManager.instance.ResetComboCount();
                 Destroy(gameObject);
                 break;
+
+            case "Player":
+                if (harmsPlayer)
+                {
+                    collision.gameObject.GetComponent<PlayerToxicity>().BuzzKill(damage);
+
+                }
+                if (impactEffect != null)
+                {
+                    Instantiate(impactEffect, transform.position, transform.rotation);
+                }
+                Destroy(gameObject);
+                break;
         }
-        
-        
     }
 }

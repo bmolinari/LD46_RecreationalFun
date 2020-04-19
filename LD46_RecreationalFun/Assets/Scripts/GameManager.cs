@@ -213,10 +213,29 @@ public class GameManager : MonoBehaviour
         while(enemiesLeftPerLevel.Count < enemyTotal)
         {
             Vector3 randomSpawnLocation = new Vector3(Random.Range(-20, 20), Random.Range(-14, 14));
-            GameObject newEnemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], randomSpawnLocation, Quaternion.identity);
-            newEnemy.GetComponent<EnemyController>().target = player;
-            newEnemy.GetComponent<EnemyController>().SetRandomColor();
-            enemiesLeftPerLevel.Add(newEnemy);
+
+
+            if(currentLevel == 1)
+            {
+                GameObject newEnemy = Instantiate(enemyTypes[0], randomSpawnLocation, Quaternion.identity);
+                newEnemy.GetComponent<EnemyController>().target = player;
+                newEnemy.GetComponent<EnemyController>().SetRandomColor();
+                enemiesLeftPerLevel.Add(newEnemy);
+            }
+            else if (currentLevel == 2)
+            {
+                GameObject newEnemy = Instantiate(enemyTypes[Random.Range(0, 1)], randomSpawnLocation, Quaternion.identity);
+                newEnemy.GetComponent<EnemyController>().target = player;
+                newEnemy.GetComponent<EnemyController>().SetRandomColor();
+                enemiesLeftPerLevel.Add(newEnemy);
+            }
+            else
+            {
+                GameObject newEnemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], randomSpawnLocation, Quaternion.identity);
+                newEnemy.GetComponent<EnemyController>().target = player;
+                newEnemy.GetComponent<EnemyController>().SetRandomColor();
+                enemiesLeftPerLevel.Add(newEnemy);
+            }
 
             yield return new WaitForSeconds(enemySpawnRate);
         }

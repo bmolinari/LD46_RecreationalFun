@@ -6,6 +6,8 @@ using UnityEngine;
 public enum EnemyBrain
 {
     Zombie = 0,
+    DormantZombie = 1,
+    Spitter = 2,
 }
 
 public class EnemyController : MonoBehaviour
@@ -20,8 +22,14 @@ public class EnemyController : MonoBehaviour
     [Header("Attack Behavior")]
     public EnemyBrain behavior;
     public GameObject target;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     public float attackDamage;
-
+    public float maxSpitCooldown = .5f;
+    private float spitCooldown;
+    private bool startChasing;
+    [SerializeField]
+    private bool isInRange;
 
     [Header("Animation")]
     public GameObject deathEffect;
@@ -59,8 +67,39 @@ public class EnemyController : MonoBehaviour
             // Mindlessly chase player around map.
             if (target != null)
             {
-                float step = moveSpeed * Time.deltaTime;
-                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
+                MoveTowardsTarget();
+            }
+        }
+        else if(behavior == EnemyBrain.DormantZombie)
+        {
+            // Chase player once in range
+            if (startChasing)
+            {
+                if (target != null)
+                {
+                    MoveTowardsTarget();
+                }
+            }
+        }
+        else if (behavior == EnemyBrain.Spitter)
+        {
+            RotateTowardsTarget();
+            if (spitCooldown < maxSpitCooldown)
+            {
+                spitCooldown += Time.deltaTime;
+            }
+            // Shoot bullets at player if in range
+            if (isInRange)
+            {
+                if(spitCooldown >= maxSpitCooldown)
+                {
+                    Fire();
+
+                }
+            }
+            else // Otherwise chase the player
+            {
+                MoveTowardsTarget();
             }
         }
 
@@ -131,6 +170,43 @@ public class EnemyController : MonoBehaviour
         {
             moveSpeed = startingMoveSpeed;
         }
+    }
+
+    public void StartChasingTarget()
+    {
+        startChasing = true;
+    }
+
+    public void SetInRange(bool value)
+    {
+        isInRange = value;
+    }
+
+    private void Fire()
+    {
+        GameObject projectile = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        projectile.GetComponent<Bullet>().SetDamage(attackDamage);
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        projectileRb.AddForce(firePoint.right * 20, ForceMode2D.Impulse);
+        spitCooldown = 0;
+    }
+
+    private void RotateTowardsTarget()
+    {
+        Vector2 tar = target.transform.position;
+
+        Vector2 position = transform.position;
+        tar.x = tar.x - position.x;
+        tar.y = tar.y - position.y;
+
+        float angle = Mathf.Atan2(tar.y, tar.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    private void MoveTowardsTarget()
+    {
+        float step = moveSpeed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
     }
 
     private Color GetRandomColor()

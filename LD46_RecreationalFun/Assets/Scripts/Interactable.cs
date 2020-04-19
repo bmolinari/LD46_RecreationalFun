@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
 
     public KeyCode interactKey;
     public UnityEvent action;
+    public bool needsKeyPress = true;
 
     private SpriteRenderer spriteRenderer;
     private Color startingColor;
@@ -23,8 +24,11 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         Debug.Log($"Interact Key: {interactKey.ToString()}");
-        startingColor = spriteRenderer.color;
-        highlightedColor = new Color(startingColor.r, startingColor.g, startingColor.b, 1);
+        if (spriteRenderer != null)
+        {
+            startingColor = spriteRenderer.color;
+            highlightedColor = new Color(startingColor.r, startingColor.g, startingColor.b, 1);
+        }
     }
 
     // Update is called once per frame
@@ -43,8 +47,15 @@ public class Interactable : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            isInRange = true;
-            spriteRenderer.color = highlightedColor;
+            if (needsKeyPress)
+            {
+                isInRange = true;
+                spriteRenderer.color = highlightedColor;
+            }
+            else
+            {
+                action.Invoke();
+            }
         }
     }
 
@@ -52,8 +63,11 @@ public class Interactable : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            isInRange = false;
-            spriteRenderer.color = startingColor;
+            if (needsKeyPress)
+            {
+                isInRange = false;
+                spriteRenderer.color = startingColor;
+            }
         }
     }
 }
