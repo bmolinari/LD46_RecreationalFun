@@ -8,8 +8,11 @@ public class CloseShopButton : MonoBehaviour
 
     public void UpdateTooltip()
     {
-        shopTooltip.SetActive(true);
-        shopTooltip.GetComponent<ShopTooltip>().SetCloseShopTooltip("Close shop and continue?");
+        if (!GameManager.instance.prepareForFinalWave)
+        {
+            shopTooltip.SetActive(true);
+            shopTooltip.GetComponent<ShopTooltip>().SetCloseShopTooltip("Close shop and continue?");
+        }
     }
 
     public void HideTooltip()

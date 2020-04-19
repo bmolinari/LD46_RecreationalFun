@@ -8,6 +8,7 @@ public class PlayerToxicity : MonoBehaviour
     public float currentToxicityLevels;
 
     public bool isSober;
+    public bool isTrashed;
 
     [Header("Components")]
     public SpriteRenderer spriteRenderer;
@@ -94,6 +95,11 @@ public class PlayerToxicity : MonoBehaviour
     public void IngestSubstance(float amount)
     {
         currentToxicityLevels += amount;
+        if (currentToxicityLevels >= 1000)
+        {
+            isTrashed = true;
+            GameManager.instance.PrepareForFinalWave();
+        }
         isSober = false;
     }
 

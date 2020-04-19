@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
     [Header("Game Over")]
     public GameObject gameOverMenu;
 
+    [Header("Final Level")]
+    public bool prepareForFinalWave;
+    public List<GameObject> bugNests = new List<GameObject>();
+    public GameObject queenBug;
+    public GameObject winningDrink;
 
     public int CurrentCombo
     {
@@ -99,13 +104,44 @@ public class GameManager : MonoBehaviour
         {
             enemyKillCount++;
 
-            if (enemiesLeftPerLevel.Count <= 0)
+            if (!prepareForFinalWave)
             {
-                isLevelClear = true;
-                PayoutPlayer();
-                OpenShop();
+                if (enemiesLeftPerLevel.Count <= 0)
+                {
+                    isLevelClear = true;
+                    PayoutPlayer();
+                    OpenShop();
+                }
+            }
+            else
+            {
+                if(enemiesLeftPerLevel.Count <= 0 && bugNests.Count <= 0)
+                {
+                    queenBug.SetActive(true);
+                    AddEnemyToTrack(queenBug);
+                }
             }
         }
+    }
+
+    public void GameWon()
+    {
+        shopTooltip.SetActive(true);
+        shopTooltip.GetComponent<ShopTooltip>().WinMessage();
+        shopkeeper.SetActive(true);
+        shopkeeper.transform.localPosition = new Vector3(0, -.165f, 0);
+        saleCounter.SetActive(true);
+        foreach (Transform child in saleCounter.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        winningDrink.SetActive(true);
+
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ShowGameOverMenu()
@@ -129,6 +165,18 @@ public class GameManager : MonoBehaviour
         }
         closeShopButton.SetActive(true);
         shopTextInstructions.SetActive(true);
+    }
+
+    public void PrepareForFinalWave()
+    {
+        prepareForFinalWave = true;
+        shopkeeper.SetActive(true);
+        saleCounter.SetActive(false);
+        closeShopButton.SetActive(true);
+        shopTooltip.SetActive(true);
+        shopTextInstructions.SetActive(false);
+
+        shopTooltip.GetComponent<ShopTooltip>().FinalWaveMessage();
     }
 
     public void CloseShop()
@@ -214,6 +262,16 @@ public class GameManager : MonoBehaviour
         ResetLevel();
     }
 
+    public void AddEnemyToTrack(GameObject obj)
+    {
+        enemiesLeftPerLevel.Add(obj);
+    }
+
+    public void RemoveBugNest(GameObject obj)
+    {
+        bugNests.Remove(obj);
+    }
+
     private void ResetLevel()
     {
         CloseShop();
@@ -223,7 +281,22 @@ public class GameManager : MonoBehaviour
 
         int enemyCount = Random.Range(minimumEnemyCount + currentLevel, maximumEnemyCount + currentLevel);
         enemiesLeftPerLevel = new List<GameObject>();
-        StartCoroutine(SpawnEnemies(enemyCount));
+        if (!prepareForFinalWave)
+        {
+            StartCoroutine(SpawnEnemies(enemyCount));
+        }
+        else
+        {
+            StartFinalWave();
+        }
+    }
+
+    private void StartFinalWave()
+    {
+        foreach (GameObject obj in bugNests)
+        {
+            obj.SetActive(true);
+        }
     }
 
     private IEnumerator SpawnEnemies(int enemyTotal)

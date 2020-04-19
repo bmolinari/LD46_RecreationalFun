@@ -8,6 +8,7 @@ public enum EnemyBrain
     Zombie = 0,
     DormantZombie = 1,
     Spitter = 2,
+    Queen
 }
 
 public class EnemyController : MonoBehaviour
@@ -49,6 +50,11 @@ public class EnemyController : MonoBehaviour
     private bool isRecoveringFromHit;
     private float currentRecoverTime;
 
+    [Header("Queen")]
+    public float maxTeleportCooldown = 10f;
+    private float currentTeleportCooldown = 0f;
+    public List<Transform> teleportSpots = new List<Transform>();
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -62,6 +68,10 @@ public class EnemyController : MonoBehaviour
         moveSpeed = startingMoveSpeed;
         startingColor = spriteRenderer.color;
         spawnDelayCounter = 0f;
+        if (behavior == EnemyBrain.Queen && teleportSpots.Count > 0)
+        {
+            Teleport();
+        }
     }
 
     // Update is called once per frame
@@ -105,7 +115,35 @@ public class EnemyController : MonoBehaviour
                 if(spitCooldown >= maxSpitCooldown)
                 {
                     Fire();
+                }
+            }
+            else // Otherwise chase the player
+            {
+                MoveTowardsTarget();
+            }
+        }
+        else if (behavior == EnemyBrain.Queen)
+        {
+            if(currentTeleportCooldown < maxTeleportCooldown)
+            {
+                currentTeleportCooldown += Time.deltaTime;
+            }
+            else
+            {
+                Teleport();
+            }
 
+            RotateTowardsTarget();
+            if (spitCooldown < maxSpitCooldown)
+            {
+                spitCooldown += Time.deltaTime;
+            }
+            // Shoot bullets at player if in range
+            if (isInRange)
+            {
+                if (spitCooldown >= maxSpitCooldown)
+                {
+                    Fire();
                 }
             }
             else // Otherwise chase the player
@@ -132,6 +170,19 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Teleport()
+    {
+        Vector3 teleportSpot = teleportSpots[Random.Range(0, teleportSpots.Count)].position;
+
+        while(teleportSpot == transform.position)
+        {
+            teleportSpot = teleportSpots[Random.Range(0, teleportSpots.Count)].position;
+        }
+
+        transform.position = teleportSpot;
+        currentTeleportCooldown = 0;
+    }
+
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -147,10 +198,18 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
-        GameManager.instance.RemoveTrackedEnemy(gameObject);
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+        if (behavior == EnemyBrain.Queen)
+        {
+            GameManager.instance.GameWon();
+        }
+        else
+        {
+            GameManager.instance.RemoveTrackedEnemy(gameObject);
+            
         }
         Destroy(gameObject);
     }

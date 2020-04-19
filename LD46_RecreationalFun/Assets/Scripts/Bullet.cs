@@ -19,26 +19,42 @@ public class Bullet : MonoBehaviour
         switch(collision.gameObject.tag)
         {
             case "Enemy":
-                if (impactEffect != null)
-                {
-                    Instantiate(impactEffect, transform.position, transform.rotation);
-                }
+                
                 if (!harmsPlayer)
                 {
+                    if (impactEffect != null)
+                    {
+                        Instantiate(impactEffect, transform.position, transform.rotation);
+                    }
                     collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
                     GameManager.instance.IncreaseComboCount();
+                    Destroy(gameObject);
                 }
-                Destroy(gameObject);
+                break;
+            case "BugNest":
+                
+                if (!harmsPlayer)
+                {
+                    if (impactEffect != null)
+                    {
+                        Instantiate(impactEffect, transform.position, transform.rotation);
+                    }
+                    collision.gameObject.GetComponent<BugNestController>().TakeDamage(damage);
+                    GameManager.instance.IncreaseComboCount();
+                    Destroy(gameObject);
+                }
                 break;
             case "Wall":
                 if(impactEffect != null)
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
-                GameManager.instance.ResetComboCount();
+                if (!harmsPlayer)
+                {
+                    GameManager.instance.ResetComboCount();
+                }
                 Destroy(gameObject);
                 break;
-
             case "Player":
                 if (harmsPlayer)
                 {
