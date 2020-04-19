@@ -94,6 +94,7 @@ public class PlayerToxicity : MonoBehaviour
     public void IngestSubstance(float amount)
     {
         currentToxicityLevels += amount;
+        isSober = false;
     }
 
     public void Die()
