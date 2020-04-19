@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     public void PayoutPlayer()
     {
-        int payoutAmount = (currentLevel * enemyKillCount) + GetHighestCurrentCombo();
+        int payoutAmount = (enemyKillCount/currentLevel) + enemyKillCount + GetHighestCurrentCombo();
 
         //Debug.Log($"Highest Combo: {GetHighestCurrentCombo().ToString()}");
         //Debug.Log($"enemyKillCount: {enemyKillCount}");
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
         comboCountsPerLevel = new List<int>();
         enemyKillCount = 0;
 
-        int enemyCount = Random.Range(minimumEnemyCount + (currentLevel * 3), maximumEnemyCount + (currentLevel * 3));
+        int enemyCount = Random.Range(minimumEnemyCount + currentLevel, maximumEnemyCount + currentLevel);
         enemiesLeftPerLevel = new List<GameObject>();
         StartCoroutine(SpawnEnemies(enemyCount));
     }
