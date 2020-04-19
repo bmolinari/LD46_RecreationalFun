@@ -19,6 +19,10 @@ public class EnemyController : MonoBehaviour
     public float startingMoveSpeed = 4f;
     private float moveSpeed;
 
+    [Header("Spawn Delay")]
+    public float spawnDelayMax = 1f;
+    private float spawnDelayCounter = 0f;
+
     [Header("Attack Behavior")]
     public EnemyBrain behavior;
     public GameObject target;
@@ -57,11 +61,18 @@ public class EnemyController : MonoBehaviour
         currentHealth = maxHealth;
         moveSpeed = startingMoveSpeed;
         startingColor = spriteRenderer.color;
+        spawnDelayCounter = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(spawnDelayCounter < spawnDelayMax)
+        {
+            spawnDelayCounter += Time.deltaTime;
+            return;
+        }
+
         if (behavior == EnemyBrain.Zombie)
         {
             // Mindlessly chase player around map.
@@ -137,11 +148,11 @@ public class EnemyController : MonoBehaviour
     public void Die()
     {
         GameManager.instance.RemoveTrackedEnemy(gameObject);
-        gameObject.SetActive(false);
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
+        Destroy(gameObject);
     }
 
     public void SetRandomColor()
