@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestoAle
   m_EditorClassIdentifier: 
   name: Testo Ale
-  cost: 30
+  cost: 1
   intoxicationAmount: 50
