@@ -1,26 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class IntoxicationEffectManager : MonoBehaviour
 {
     public PlayerToxicity playerToxicity;
     public CameraFollow cameraFollow;
-    public PostProcessVolume globalPostProcessing;
+    public Volume globalPostProcessing;
 
     private ChromaticAberration chromaticAbberation;
     private Bloom bloom;
     private MotionBlur motionBlur;
     private LensDistortion lensDistortion;
+    private Vignette vignette;
+    private bool zoomOut;
 
     // Start is called before the first frame update
     void Awake()
     {
-        globalPostProcessing.profile.TryGetSettings(out chromaticAbberation);
-        globalPostProcessing.profile.TryGetSettings(out bloom);
-        globalPostProcessing.profile.TryGetSettings(out motionBlur);
-        globalPostProcessing.profile.TryGetSettings(out lensDistortion);
+        globalPostProcessing.profile.TryGet(out chromaticAbberation);
+        globalPostProcessing.profile.TryGet(out bloom);
+        globalPostProcessing.profile.TryGet(out motionBlur);
+        globalPostProcessing.profile.TryGet(out lensDistortion);
+        globalPostProcessing.profile.TryGet(out vignette);
     }
 
     // Update is called once per frame
@@ -63,16 +67,53 @@ public class IntoxicationEffectManager : MonoBehaviour
         {
             EighthSettings();
         }
-        else if (playerToxicity.CurrentToxcicity >= 450)// && playerToxicity.CurrentToxcicity < 500)
+        else if (playerToxicity.CurrentToxcicity >= 450 && playerToxicity.CurrentToxcicity < 500)
         {
             NinthSettings();
         }
-
-
-
-        if (Input.GetKeyDown(KeyCode.J))
+        else if (playerToxicity.CurrentToxcicity >= 500 && playerToxicity.CurrentToxcicity < 550)
         {
-            chromaticAbberation.intensity.value = .5f;
+            TenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 550 && playerToxicity.CurrentToxcicity < 600)
+        {
+            EleventhSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 600 && playerToxicity.CurrentToxcicity < 650)
+        {
+            TwelvethSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 650 && playerToxicity.CurrentToxcicity < 700)
+        {
+            ThirteenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 700 && playerToxicity.CurrentToxcicity < 750)
+        {
+            FourteenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 750 && playerToxicity.CurrentToxcicity < 700)
+        {
+            FifteenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 800 && playerToxicity.CurrentToxcicity < 850)
+        {
+            SixteenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 850 && playerToxicity.CurrentToxcicity < 900)
+        {
+            SeventeenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 900 && playerToxicity.CurrentToxcicity < 950)
+        {
+            EighteenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 950 && playerToxicity.CurrentToxcicity < 1000)
+        {
+            NineteenthSettings();
+        }
+        else if (playerToxicity.CurrentToxcicity >= 1000)
+        {
+            FinalSettings();
         }
     }
 
@@ -84,7 +125,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         motionBlur.active = false;
         lensDistortion.active = false;
         chromaticAbberation.active = false;
-
+        vignette.active = false;
     }
 
     private void FirstSettings()
@@ -95,6 +136,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         motionBlur.active = false;
         lensDistortion.active = false;
         chromaticAbberation.active = false;
+        vignette.active = false;
     }
 
     private void SecondSettings()
@@ -105,6 +147,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         motionBlur.active = true;
         lensDistortion.active = false;
         chromaticAbberation.active = false;
+        vignette.active = false;
     }
 
     private void ThirdSettings()
@@ -115,6 +158,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         motionBlur.active = true;
         lensDistortion.active = false;
         chromaticAbberation.active = false;
+        vignette.active = false;
     }
 
     private void FourthSettings()
@@ -126,6 +170,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         lensDistortion.active = false;
         chromaticAbberation.active = true;
         chromaticAbberation.intensity.value = .2f;
+        vignette.active = false;
     }
 
     private void FifthSettings()
@@ -137,6 +182,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         lensDistortion.active = false;
         chromaticAbberation.active = true;
         chromaticAbberation.intensity.value = .2f;
+        vignette.active = false;
     }
 
     private void SixthSettings()
@@ -148,6 +194,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         lensDistortion.active = false;
         chromaticAbberation.active = true;
         chromaticAbberation.intensity.value = .2f;
+        vignette.active = false;
     }
 
     private void SeventhSettings()
@@ -159,6 +206,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         lensDistortion.active = false;
         chromaticAbberation.active = true;
         chromaticAbberation.intensity.value = .2f;
+        vignette.active = false;
     }
 
     private void EighthSettings()
@@ -170,6 +218,7 @@ public class IntoxicationEffectManager : MonoBehaviour
         lensDistortion.active = false;
         chromaticAbberation.active = true;
         chromaticAbberation.intensity.value = .5f;
+        vignette.active = false;
     }
 
     private void NinthSettings()
@@ -181,5 +230,306 @@ public class IntoxicationEffectManager : MonoBehaviour
         lensDistortion.active = false;
         chromaticAbberation.active = true;
         chromaticAbberation.intensity.value = .5f;
+        vignette.active = false;
+        if (lensDistortion.intensity.value > 0)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+        }
+        else if (lensDistortion.intensity.value < 0)
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+        }
+        else
+        {
+            return;
+        }
     }
+
+    private void TenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        lensDistortion.active = false;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        vignette.active = false;
+        if (lensDistortion.intensity.value > 0)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+        }
+        else if (lensDistortion.intensity.value < 0)
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    private void EleventhSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        vignette.active = false;
+
+        lensDistortion.active = false;
+        if (lensDistortion.intensity.value > 0)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+        }
+        else if (lensDistortion.intensity.value < 0)
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+        }
+        else
+        {
+            return;
+        }
+
+    }
+
+    private void TwelvethSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = false;
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+            zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void ThirteenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = false;
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void FourteenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        vignette.active = true;
+        vignette.intensity.value = .5f;
+
+        lensDistortion.active = true;
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void FifteenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = true;
+        vignette.intensity.value = .5f;
+
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void SixteenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = true;
+        vignette.intensity.value = .5f;
+
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void SeventeenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = true;
+        vignette.intensity.value = .5f;
+
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void EighteenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = true;
+        vignette.intensity.value = .5f;
+
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void NineteenthSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = true;
+        vignette.intensity.value = .75f;
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
+    private void FinalSettings()
+    {
+        cameraFollow.smoothSpeed = 0.035f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        bloom.active = true;
+        motionBlur.active = true;
+        chromaticAbberation.active = true;
+        chromaticAbberation.intensity.value = .5f;
+        lensDistortion.active = true;
+        vignette.active = true;
+
+
+        if (zoomOut)
+        {
+            lensDistortion.intensity.value -= Time.deltaTime;
+            if (lensDistortion.intensity.value <= -0.5f)
+                zoomOut = !zoomOut;
+        }
+        else
+        {
+            lensDistortion.intensity.value += Time.deltaTime;
+            if (lensDistortion.intensity.value >= 0.5f)
+                zoomOut = !zoomOut;
+        }
+    }
+
 }
