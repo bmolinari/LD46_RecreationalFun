@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         shopTooltip.SetActive(true);
         shopTooltip.GetComponent<ShopTooltip>().WinMessage();
         shopkeeper.SetActive(true);
+        AudioManager.instance.PlayShopKeeper3Random();
         shopkeeper.transform.localPosition = new Vector3(0, -.165f, 0);
         saleCounter.SetActive(false);
         winningDrink.SetActive(true);
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
     public void OpenShop()
     {
         shopkeeper.SetActive(true);
+        AudioManager.instance.PlayShopKeeper1Random();
         shopkeeper.transform.localPosition = new Vector3(0, -.165f, 0);
         saleCounter.SetActive(true);
         foreach(Transform child in saleCounter.transform)
@@ -167,6 +169,7 @@ public class GameManager : MonoBehaviour
     {
         prepareForFinalWave = true;
         shopkeeper.SetActive(true);
+        AudioManager.instance.PlayShopKeeper2Random();
         saleCounter.SetActive(false);
         closeShopButton.SetActive(true);
         shopTooltip.SetActive(true);
@@ -203,6 +206,7 @@ public class GameManager : MonoBehaviour
         {
             targetCoinCount -= substance.cost;
             player.GetComponent<PlayerToxicity>().IngestSubstance(substance.intoxicationAmount);
+            AudioManager.instance.PlayRandomDrinkSound();
             StartCoroutine(ScoreUpdater());
         }
     }
@@ -217,6 +221,7 @@ public class GameManager : MonoBehaviour
             {
                 GameObject.Destroy(child.gameObject);
             }
+            AudioManager.instance.PlayCoinExchange();
             Instantiate(weapon, player.transform);
 
             StartCoroutine(ScoreUpdater());
@@ -277,6 +282,7 @@ public class GameManager : MonoBehaviour
 
         int enemyCount = Random.Range(minimumEnemyCount + currentLevel, maximumEnemyCount + currentLevel);
         enemiesLeftPerLevel = new List<GameObject>();
+        AudioManager.instance.PlayButtonClip();
         if (!prepareForFinalWave)
         {
             StartCoroutine(SpawnEnemies(enemyCount));

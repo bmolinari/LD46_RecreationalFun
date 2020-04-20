@@ -106,6 +106,7 @@ public class PlayerToxicity : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+        AudioManager.instance.PlayDeath();
         GameManager.instance.ShowGameOverMenu();
     }
 

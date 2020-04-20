@@ -14,6 +14,11 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI messageText;
 
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public AudioClip clip3;
+
+
     public bool isSpeaking = false;
     private float maxTime = 3f;
     private float currentTime = 0f;
@@ -51,8 +56,7 @@ public class MainMenuManager : MonoBehaviour
         player.transform.GetComponentInChildren<MainMenuWeapon>().maxBurstFireCooldown = .1f;
         player.transform.GetComponentInChildren<MainMenuWeapon>().limitedAmmo = false;
         player.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(.5f, 0, .5f);
-
-
+        AudioManager.instance.PlayCoinExchange();
     }
 
     public void ShowRifleTip()
@@ -70,6 +74,7 @@ public class MainMenuManager : MonoBehaviour
         player.transform.GetComponentInChildren<MainMenuWeapon>().maxAutomaticFireCooldown = .15f;
         player.transform.GetComponentInChildren<MainMenuWeapon>().limitedAmmo = false;
         player.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, .6f, 0);
+        AudioManager.instance.PlayCoinExchange();
     }
     public void ShowMachineGunTip()
     {
@@ -85,6 +90,7 @@ public class MainMenuManager : MonoBehaviour
         player.transform.GetComponentInChildren<MainMenuWeapon>().fireType = FireType.SemiAutomatic;
         player.transform.GetComponentInChildren<MainMenuWeapon>().limitedAmmo = false;
         player.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
+        AudioManager.instance.PlayCoinExchange();
     }
 
     public void ShowPistolTip()
@@ -93,7 +99,6 @@ public class MainMenuManager : MonoBehaviour
         descriptionText.text = "Semi Automatic";
         messageText.text = "";
         shopTooltip.SetActive(true);
-
     }
 
     public void ShowGreeting()
@@ -103,6 +108,7 @@ public class MainMenuManager : MonoBehaviour
         descriptionText.text = "";
         shopTooltip.SetActive(true);
         isSpeaking = true;
+        AudioManager.instance.PlayRandomizedClip(clip3);
     }
 
     public void ShowDrinkMessage()

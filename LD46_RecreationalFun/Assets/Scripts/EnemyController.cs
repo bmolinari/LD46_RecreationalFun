@@ -211,6 +211,7 @@ public class EnemyController : MonoBehaviour
             GameManager.instance.RemoveTrackedEnemy(gameObject);
             
         }
+        AudioManager.instance.PlayDeath();
         Destroy(gameObject);
     }
 
@@ -259,6 +260,7 @@ public class EnemyController : MonoBehaviour
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(firePoint.right * 20, ForceMode2D.Impulse);
         spitCooldown = 0;
+        AudioManager.instance.PlayButtonClip();
     }
 
     private void RotateTowardsTarget()

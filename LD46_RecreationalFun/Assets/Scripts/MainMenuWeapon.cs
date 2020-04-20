@@ -95,6 +95,7 @@ public class MainMenuWeapon : MonoBehaviour
         GameObject projectile = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+        AudioManager.instance.PlayGunshot();
         if (limitedAmmo)
         {
             currentAmmo--;

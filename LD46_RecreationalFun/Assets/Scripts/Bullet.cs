@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
                     {
                         Instantiate(impactEffect, transform.position, transform.rotation);
                     }
+                    AudioManager.instance.PlayHit();
                     collision.gameObject.GetComponent<EnemyController>().TakeDamage(damage);
                     GameManager.instance.IncreaseComboCount();
                     Destroy(gameObject);
@@ -39,6 +40,7 @@ public class Bullet : MonoBehaviour
                     {
                         Instantiate(impactEffect, transform.position, transform.rotation);
                     }
+                    AudioManager.instance.PlayHit();
                     collision.gameObject.GetComponent<BugNestController>().TakeDamage(damage);
                     GameManager.instance.IncreaseComboCount();
                     Destroy(gameObject);
@@ -53,18 +55,20 @@ public class Bullet : MonoBehaviour
                 {
                     GameManager.instance.ResetComboCount();
                 }
+                AudioManager.instance.PlayHit();
                 Destroy(gameObject);
                 break;
             case "Player":
                 if (harmsPlayer)
                 {
+                    AudioManager.instance.PlayHit();
                     collision.gameObject.GetComponent<PlayerToxicity>().BuzzKill(damage);
-
                 }
                 if (impactEffect != null)
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
+                
                 Destroy(gameObject);
                 break;
         }

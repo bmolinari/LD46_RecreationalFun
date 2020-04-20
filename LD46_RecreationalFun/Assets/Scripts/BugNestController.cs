@@ -49,6 +49,7 @@ public class BugNestController : MonoBehaviour
     public void Die()
     {
         GameManager.instance.RemoveBugNest(gameObject);
+        AudioManager.instance.PlayDeath();
         Destroy(gameObject);
     }
 }

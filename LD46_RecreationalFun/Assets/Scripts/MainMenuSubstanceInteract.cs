@@ -12,6 +12,7 @@ public class MainMenuSubstanceInteract : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                AudioManager.instance.PlayRandomDrinkSound();
                 menu.StartGame();
             }
         }

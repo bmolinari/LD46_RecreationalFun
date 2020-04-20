@@ -104,6 +104,7 @@ public class Weapon : MonoBehaviour
         projectile.GetComponent<Bullet>().SetDamage(weaponDamage);
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+        AudioManager.instance.PlayGunshot();
         if (limitedAmmo)
         {
             currentAmmo--;

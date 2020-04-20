@@ -16,6 +16,7 @@ public class MainMenuBullet : MonoBehaviour
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
+                AudioManager.instance.PlayHit();
                 Destroy(gameObject);
                 break;
             case "Wall":
@@ -23,6 +24,7 @@ public class MainMenuBullet : MonoBehaviour
                 {
                     Instantiate(impactEffect, transform.position, transform.rotation);
                 }
+                AudioManager.instance.PlayHit();
                 Destroy(gameObject);
                 break;
         }
