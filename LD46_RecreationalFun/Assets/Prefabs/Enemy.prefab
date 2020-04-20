@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fbbce69b1c28e564d8935f17f9bb8c96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95cff0d046718434c8ff1a28baa36879, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -146,13 +146,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   startingMoveSpeed: 4
+  spawnDelayMax: 1
   behavior: 0
   target: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   attackDamage: 25
+  maxSpitCooldown: 0.5
+  isInRange: 0
   deathEffect: {fileID: 2340298233846060899, guid: df8158a3de84008499552d542be0bad1,
     type: 3}
   colorFlashTime: 0.1
   maxRecoverTime: 1
+  maxTeleportCooldown: 10
+  teleportSpots: []
 --- !u!1001 &603575443231186713
 PrefabInstance:
   m_ObjectHideFlags: 0

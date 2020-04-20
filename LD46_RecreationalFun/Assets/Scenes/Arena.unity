@@ -3270,6 +3270,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 142609467, guid: 59642dd2f80c2da468a71fb74fc739bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 142609467, guid: 59642dd2f80c2da468a71fb74fc739bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 142609467, guid: 59642dd2f80c2da468a71fb74fc739bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8402956542598940686, guid: 59642dd2f80c2da468a71fb74fc739bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3324,11 +3336,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402956542598940688, guid: 59642dd2f80c2da468a71fb74fc739bf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8402956542598940728, guid: 59642dd2f80c2da468a71fb74fc739bf,
         type: 3}
@@ -3387,13 +3394,8 @@ PrefabInstance:
       objectReference: {fileID: 1107767509}
     - target: {fileID: 8402956542598940780, guid: 59642dd2f80c2da468a71fb74fc739bf,
         type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8402956542598940780, guid: 59642dd2f80c2da468a71fb74fc739bf,
-        type: 3}
       propertyPath: maxSpitCooldown
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59642dd2f80c2da468a71fb74fc739bf, type: 3}
