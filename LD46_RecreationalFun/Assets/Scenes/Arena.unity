@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2728,6 +2728,16 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 542928766513015960, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 542928766513015960, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 542928766513015961, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: m_Color.r
@@ -2743,6 +2753,12 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 542928766513015961, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa1c140d84bece74f82ad15051082cb3,
+        type: 3}
     - target: {fileID: 542928766513015962, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: shopTooltip
@@ -2794,6 +2810,16 @@ PrefabInstance:
       propertyPath: shopTooltip
       value: 
       objectReference: {fileID: 1065986798}
+    - target: {fileID: 8190252273809907480, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252273809907480, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8190252273809907481, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: m_Color.r
@@ -2809,6 +2835,12 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8190252273809907481, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa1c140d84bece74f82ad15051082cb3,
+        type: 3}
     - target: {fileID: 8190252273809907482, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: randomSubstances.Array.size
