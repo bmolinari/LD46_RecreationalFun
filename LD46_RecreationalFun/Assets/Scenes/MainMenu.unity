@@ -1770,7 +1770,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06668116, y: -2.123479}
+  m_Offset: {x: 0.00017389655, y: -0.7886118}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1781,7 +1781,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7309027, y: 2.8973927}
+  m_Size: {x: 0.53033763, y: 1.0305854}
   m_EdgeRadius: 0
 --- !u!212 &1196570263
 SpriteRenderer:
@@ -2144,7 +2144,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009995148, y: -2.123479}
+  m_Offset: {x: -0.0016381145, y: -0.8187218}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2155,7 +2155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8442781, y: 2.8973927}
+  m_Size: {x: 0.49328983, y: 1.0105135}
   m_EdgeRadius: 0
 --- !u!212 &1486232192
 SpriteRenderer:
@@ -2267,7 +2267,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.04778619, y: -2.123479}
+  m_Offset: {x: -0.0060018823, y: -0.80868506}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2278,7 +2278,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9954425, y: 2.8973927}
+  m_Size: {x: 0.41046172, y: 1.0707328}
   m_EdgeRadius: 0
 --- !u!212 &1502136968
 SpriteRenderer:
@@ -3907,7 +3907,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02889131, y: -2.123479}
+  m_Offset: {x: -0.0038207173, y: -0.899014}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3918,7 +3918,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0332325, y: 2.8973927}
+  m_Size: {x: 0.5151062, y: 1.171099}
   m_EdgeRadius: 0
 --- !u!4 &2133710679206151518
 Transform:

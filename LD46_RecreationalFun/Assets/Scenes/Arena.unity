@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2702,6 +2702,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 542928765865096446, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0035155118
+      objectReference: {fileID: 0}
+    - target: {fileID: 542928765865096446, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.11970733
+      objectReference: {fileID: 0}
+    - target: {fileID: 542928765865096446, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.23201273
+      objectReference: {fileID: 0}
+    - target: {fileID: 542928765865096446, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.27827922
+      objectReference: {fileID: 0}
     - target: {fileID: 542928766142141349, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: shopTooltip
@@ -2810,6 +2830,26 @@ PrefabInstance:
       propertyPath: shopTooltip
       value: 
       objectReference: {fileID: 1065986798}
+    - target: {fileID: 8101096014542716388, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.29595336
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101096014542716388, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.17962807
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101096014542716388, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.010546491
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101096014542716388, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.12322292
+      objectReference: {fileID: 0}
     - target: {fileID: 8190252273809907480, guid: 14e0e58894b5ea24fb5e065e869eadd8,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2898,6 +2938,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8ad8cda9a34f3c9489991969b974d81c,
         type: 2}
+    - target: {fileID: 8190252274202036094, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.008788768
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252274202036094, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.10916083
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252274202036094, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.22835892
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190252274202036094, guid: 14e0e58894b5ea24fb5e065e869eadd8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.27097178
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14e0e58894b5ea24fb5e065e869eadd8, type: 3}
 --- !u!1001 &821361220238684579
