@@ -14,7 +14,7 @@ public class ShopTooltip : MonoBehaviour
     public void SetSubstanceTooltip(string name, int cost, int toxicityAmount)
     {
         nameText.text = name;
-        costText.text = cost.ToString();
+        costText.text = $"${cost.ToString()}";
         descriptionText.text = $"+{toxicityAmount} Intoxication";
         messageText.text = string.Empty;
     }
@@ -22,7 +22,7 @@ public class ShopTooltip : MonoBehaviour
     public void SetWeaponTooltip(string name, int cost, int maxAmmo, FireType type)
     {
         nameText.text = name;
-        costText.text = cost.ToString();
+        costText.text = $"${cost.ToString()}";
         descriptionText.text = $"{type.ToString()} | Max Ammo:{maxAmmo}";
         messageText.text = string.Empty;
     }
